@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    stages {
+        stage("compile") {
+            steps {
+                echo "compiled sucessfully";
+            }
+        }
+    stage("junit") {
+            steps {
+                echo "junit passed sucessfully";
+            }
+        }
+	stage("quality code") {
+            steps {
+                echo "quality checked sucessfully";
+            }
+        }
+	stage("deploy") {
+            steps {
+                echo "deployed sucessfully";
+            }
+        }
+     }
+	post {
+		always{
+			echo 'this will run'
+                      }
+          	success {
+			echo 'This will run if only sucessful'
+			}
+		failure {
+			 echo 'this will run if only failed'
+			}
+		unstable{
+			  echo 'this isonly if run is unstable'
+			}
+		changed{
+		echo ' This will run only if the state of pipeline has changed'
+		echo 'For example if the pipeline was previously failing but now it is successfull'
+			}
+		}
+	}
+
+		
+        
+ 
+ 
+ 
+ 
